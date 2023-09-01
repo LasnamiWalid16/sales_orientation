@@ -2,18 +2,14 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-
-# Add a title to your app
-st.title("Simple Streamlit App")
-
-# Add some text
-st.write("Welcome to this simple Streamlit app.")
-
-# streamlit_app.py
-
-import streamlit as st
 from google.oauth2 import service_account
 from google.cloud import bigquery
+
+# Add a title to your app
+st.title("SAG Student Orientation")
+
+# Add some text
+st.write("Choose your best course in few clicks !")
 
 
 # Create API client.
@@ -44,9 +40,12 @@ selected_admissionType = st.selectbox("Select a admissionType", ['direct','pathw
 # Create a Streamlit selectbox to choose a university
 selected_university = st.selectbox("Select a University", all_data['university'].unique())
 
+selected_intake = st.multiselect("Select Intake", all_data['intakeName'].unique(), default=all_data['intakeName'].unique())
+
+
 # Filter the DataFrame based on the selected university
 filtered_data = all_data[(all_data['university'] == selected_university) & (all_data['degree'] == selected_degree)
-                         & (all_data['admissionType'] == selected_admissionType)]
+                         & (all_data['admissionType'] == selected_admissionType) & all_data['intakeName'].isin(selected_intake)]
 
 # Display the filtered data
 st.write(f"Data for students from {selected_university}:")
