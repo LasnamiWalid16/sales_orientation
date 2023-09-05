@@ -1,7 +1,6 @@
 # Import the Streamlit library
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 from google.oauth2 import service_account
 from google.cloud import bigquery
 
