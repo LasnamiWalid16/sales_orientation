@@ -55,5 +55,7 @@ if st.button("Show Results"):
                      AND   country = '{selected_country}'   """
                      
     all_data = run_query(sql_query)
+    
+    
 
     st.write(all_data)
